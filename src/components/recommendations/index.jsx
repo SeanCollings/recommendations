@@ -60,9 +60,24 @@ const SAddToCart = styled.div`
     color: white;
   }
 `;
-
+const SPreImage = styled.span`
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 125%;
+  background: #f3f3f7;
+  width: 124px;
+  height: auto;
+`;
 const SImage = styled.img`
-  height: 160px;
+  position: absolute;
+  left: 50%;
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
 `;
 
 const RecommendedItem = ({ item }) => {
@@ -75,8 +90,10 @@ const RecommendedItem = ({ item }) => {
   return (
     <SRecoContainer>
       <SImageContainer>
-        <SAddToCart onClick={handeAddToCart}>Add to cart</SAddToCart>
-        <SImage alt="image" src={item.url} />
+        <SPreImage>
+          <SImage alt="image" src={item.url} />
+          <SAddToCart onClick={handeAddToCart}>Add to cart</SAddToCart>
+        </SPreImage>
       </SImageContainer>
       <SRecoName>{item.name}</SRecoName>
       <SPriceContainer>

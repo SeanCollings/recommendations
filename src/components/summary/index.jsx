@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DISCOUNT_THRESHOLD } from '../../constants';
+import { DISCOUNT_PERCENT_OFF, DISCOUNT_THRESHOLD } from '../../constants';
 import { useCartContext } from '../../context/cart-context';
 
 const SContainer = styled.div`
@@ -36,19 +36,14 @@ const STotal = styled(SMain)`
 `;
 
 const Summary = () => {
-  const { cartItems } = useCartContext();
+  const { cartItems, totalPrice } = useCartContext();
 
-  const total = cartItems.reduce((acc, current) => {
-    acc += +current.markdown || +current.price;
-    return +acc.toFixed(2);
-  }, 0);
-
-  let finalTotal = total;
+  let finalTotal = totalPrice;
   let discount = 0;
 
-  if (total > DISCOUNT_THRESHOLD) {
-    finalTotal = (total * 0.75).toFixed(2);
-    discount = (total - finalTotal).toFixed(2);
+  if (totalPrice > DISCOUNT_THRESHOLD) {
+    finalTotal = (totalPrice * ((100 - DISCOUNT_PERCENT_OFF) / 100)).toFixed(2);
+    discount = (totalPrice - finalTotal).toFixed(2);
   }
 
   return (
@@ -56,7 +51,7 @@ const Summary = () => {
       <SMain>Your order summary</SMain>
       <SDetails>
         <div>{cartItems.length} items</div>
-        <SDetailPrice>${total}</SDetailPrice>
+        <SDetailPrice>${totalPrice}</SDetailPrice>
       </SDetails>
       {discount > 0 && (
         <SDetails>

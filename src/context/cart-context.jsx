@@ -10,6 +10,7 @@ import { PRODUCTS } from '../data/products';
 export const initialState = {
   cartItems: [],
   recommendations: [],
+  totalPrice: 0,
   addToCart: () => null,
   removeFromCart: () => null,
 };
@@ -17,12 +18,23 @@ export const initialState = {
 const CartContext = createContext(initialState);
 
 export const CartContextProvider = ({ children }) => {
+  const intialCartItems = PRODUCTS[0];
   const initialRecommendedItems = PRODUCTS.slice(1);
 
-  const [cartItems, setCartItems] = useState([PRODUCTS[0]]);
+  const [totalPrice, setTotalPrice] = useState(
+    intialCartItems.markdown || intialCartItems.price
+  );
+  const [cartItems, setCartItems] = useState([intialCartItems]);
   const [recommendationItems, setRecommendationItems] = useState(
     initialRecommendedItems
   );
+
+  const getTotalPrice = useCallback((items) => {
+    return items.reduce((acc, current) => {
+      acc += +current.markdown || +current.price;
+      return +acc.toFixed(2);
+    }, 0);
+  }, []);
 
   const addToCart = useCallback(
     (id) => {
@@ -37,8 +49,9 @@ export const CartContextProvider = ({ children }) => {
 
       setCartItems(updatedCartItems);
       setRecommendationItems(updatedRecommendations);
+      setTotalPrice(getTotalPrice(updatedCartItems));
     },
-    [cartItems, recommendationItems]
+    [cartItems, recommendationItems, getTotalPrice]
   );
 
   const removeFromCart = useCallback(
@@ -52,18 +65,20 @@ export const CartContextProvider = ({ children }) => {
 
       setCartItems(updatedCartItems);
       setRecommendationItems(updatedRecommendations);
+      setTotalPrice(getTotalPrice(updatedCartItems));
     },
-    [cartItems, recommendationItems]
+    [cartItems, recommendationItems, getTotalPrice]
   );
 
   const context = useMemo(
     () => ({
       cartItems,
       recommendationItems,
+      totalPrice,
       addToCart,
       removeFromCart,
     }),
-    [cartItems, recommendationItems, addToCart, removeFromCart]
+    [cartItems, recommendationItems, totalPrice, addToCart, removeFromCart]
   );
 
   return (

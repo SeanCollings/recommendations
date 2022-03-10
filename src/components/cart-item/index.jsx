@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BsHeart, BsTrash } from 'react-icons/bs';
-import { DISCOUNT_THRESHOLD } from '../../constants';
+import { DISCOUNT_PERCENT_OFF, DISCOUNT_THRESHOLD } from '../../constants';
 import { useCartContext } from '../../context/cart-context';
 
 const SContainer = styled.div`
@@ -58,18 +58,13 @@ const SActions = styled.div`
 `;
 
 const CartItem = ({ item }) => {
-  const { removeFromCart, cartItems } = useCartContext();
+  const { removeFromCart, totalPrice } = useCartContext();
 
   if (!item) {
     return null;
   }
 
-  const total = cartItems.reduce((acc, current) => {
-    acc += +current.markdown || +current.price;
-    return +acc.toFixed(2);
-  }, 0);
-
-  const discountApplied = total >= DISCOUNT_THRESHOLD;
+  const discountApplied = totalPrice >= DISCOUNT_THRESHOLD;
 
   const handleRemove = () => {
     removeFromCart(item.id);
@@ -86,7 +81,7 @@ const CartItem = ({ item }) => {
           {item.markdown && <SMarkdown>${item.markdown}</SMarkdown>}
         </SPriceContainer>
         <SCampaign>
-          Spend ${DISCOUNT_THRESHOLD} save 25%
+          Spend ${DISCOUNT_THRESHOLD} save {DISCOUNT_PERCENT_OFF}%
           {discountApplied ? ' applied' : ''}
         </SCampaign>
         <SActions>

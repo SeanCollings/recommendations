@@ -25,7 +25,6 @@ const SRecoName = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: #4d4d4d;
-  margin-bottom: 4px;
   font-weight: bold;
   font-size: 12px;
   white-space: nowrap;

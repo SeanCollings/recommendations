@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useCartContext } from '../../context/cart-context';
 
 const SContainer = styled.div`
   color: #4d4d4d;
@@ -19,9 +20,11 @@ const SItem = styled.div`
 `;
 
 const CheckoutHeader = () => {
+  const {cartItems} = useCartContext()
+
   return (
     <SContainer>
-      <SItem>BAG (1 items)</SItem>
+      <SItem>{`BAG (${cartItems.length} items)`}</SItem>
       <SItem>DELIVERY</SItem>
       <SItem>PAYMENT</SItem>
     </SContainer>

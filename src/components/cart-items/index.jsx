@@ -1,3 +1,4 @@
+import { BsBoxSeam } from 'react-icons/bs';
 import styled from 'styled-components';
 import { useCartContext } from '../../context/cart-context';
 import CartItem from '../cart-item';
@@ -11,6 +12,11 @@ const SContainer = styled.div`
 const SHeader = styled.div`
   font-weight: bold;
   margin: 0 0 8px 0;
+  display: flex;
+
+  > div {
+    margin-left: 4px;
+  }
 `;
 const SCartPadder = styled.div`
   padding-bottom: 16px;
@@ -21,7 +27,10 @@ const CartItems = () => {
 
   return (
     <SContainer>
-      <SHeader>Parcel 1 - Sent by THE ICONIC</SHeader>
+      <SHeader>
+        <BsBoxSeam />
+        <div>Parcel 1 - Sent by THE ICONIC</div>
+      </SHeader>
       {cartItems?.map((item) => (
         <SCartPadder key={item.id}>
           <CartItem item={item} />

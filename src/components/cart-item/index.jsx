@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BsHeart, BsTrash } from 'react-icons/bs';
 import { DISCOUNT_THRESHOLD } from '../../constants';
 import { useCartContext } from '../../context/cart-context';
 
@@ -44,10 +45,16 @@ const SCampaign = styled.div`
   ursor: pointer;
 `;
 const SActions = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 4px;
   color: #4d4d4d;
   font-weight: 700;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  > div {
+    margin-left: 4px;
+  }
 `;
 
 const CartItem = ({ item }) => {
@@ -82,8 +89,14 @@ const CartItem = ({ item }) => {
           Spend ${DISCOUNT_THRESHOLD} save 25%
           {discountApplied ? ' applied' : ''}
         </SCampaign>
-        <SActions>Move to wishlist</SActions>
-        <SActions onClick={handleRemove}>Remove</SActions>
+        <SActions>
+          <BsHeart size={'0.75em'} />
+          <div>Move to wishlist</div>
+        </SActions>
+        <SActions onClick={handleRemove}>
+          <BsTrash size={'0.75em'} />
+          <div>Remove</div>
+        </SActions>
       </SDesciptor>
     </SContainer>
   );

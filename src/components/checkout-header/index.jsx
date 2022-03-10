@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BsBag, BsTruck, BsCreditCard2Back } from 'react-icons/bs';
 import { useCartContext } from '../../context/cart-context';
 
 const SContainer = styled.div`
@@ -17,16 +18,31 @@ const SItem = styled.div`
   letter-spacing: 0.01875em;
   text-transform: uppercase;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+
+  > div {
+    margin-left: 8px;
+  }
 `;
 
 const CheckoutHeader = () => {
-  const {cartItems} = useCartContext()
+  const { cartItems } = useCartContext();
 
   return (
     <SContainer>
-      <SItem>{`BAG (${cartItems.length} items)`}</SItem>
-      <SItem>DELIVERY</SItem>
-      <SItem>PAYMENT</SItem>
+      <SItem>
+        <BsBag size={'1.25em'} />
+        <div>{`BAG (${cartItems.length} items)`}</div>
+      </SItem>
+      <SItem>
+        <BsTruck size={'1.25em'} />
+        <div>DELIVERY</div>
+      </SItem>
+      <SItem>
+        <BsCreditCard2Back size={'1.25em'} />
+        <div>PAYMENT</div>
+      </SItem>
     </SContainer>
   );
 };

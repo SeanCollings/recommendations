@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BsQuestionCircle, BsArrowLeft } from 'react-icons/bs';
 
 const SHeaderContainer = styled.div`
   background: #232323;
@@ -22,7 +23,13 @@ const SSideHeaders = styled.div`
   letter-spacing: 0.01875em;
   font-size: 12px;
   line-height: 1;
-  font-weight: 400;
+  font-weight: 700;
+  display: flex;
+  cursor: pointer;
+
+  > div {
+    margin-left: 8px;
+  }
 `;
 const SHeaderContents = styled.div`
   display: flex;
@@ -35,9 +42,15 @@ const Header = () => {
   return (
     <SHeaderContainer>
       <SHeaderContents>
-        <SSideHeaders>Continue Shopping</SSideHeaders>
+        <SSideHeaders>
+          <BsArrowLeft />
+          <div>Continue Shopping</div>
+        </SSideHeaders>
         <SHeaderName>THE ICONIC</SHeaderName>
-        <SSideHeaders>{`Contact & FAQs`}</SSideHeaders>
+        <SSideHeaders>
+          <BsQuestionCircle />
+          <div>{`Contact & FAQs`}</div>
+        </SSideHeaders>
       </SHeaderContents>
     </SHeaderContainer>
   );

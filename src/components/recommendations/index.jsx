@@ -9,9 +9,6 @@ const SContainer = styled.div`
 `;
 const SInnerContainer = styled.div`
   box-sizing: border-box;
-  border: 1px solid #cdcdcd;
-  border-radius: 2px;
-  // padding: 8px;
   display: flex;
   overflow: auto;
 `;
@@ -20,7 +17,7 @@ const SHeader = styled.div`
   margin: 0 0 8px 0;
 `;
 const SRecoContainer = styled.div`
-  padding: 8px;
+  padding: 0 8px;
 `;
 const SRecoName = styled.div`
   letter-spacing: 0.01875em;
@@ -29,10 +26,12 @@ const SRecoName = styled.div`
   color: #4d4d4d;
   margin-bottom: 4px;
   font-weight: bold;
+  font-size: 12px;
 `;
 const SPriceContainer = styled.div`
   display: flex;
   margin-bottom: 4px;
+  font-size: 12px;
 `;
 const SPrice = styled.div`
   margin-right: 4px;
@@ -41,7 +40,6 @@ const SPrice = styled.div`
 `;
 const SMarkdown = styled.div`
   color: #ef423c;
-  line-height: 16px;
 `;
 const SImageContainer = styled.div`
   position: relative;
@@ -55,6 +53,7 @@ const SAddToCart = styled.div`
   background: white;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 12px;
 
   &:hover {
     background: #42abc8;

@@ -97,19 +97,19 @@ export const PRODUCTS = [
   },
   {
     id: 13,
-    name: 'STAPLE SUPERIOR',
-    tag: 'Staple Organic Vintage Muscle',
-    price: 24.99,
-    markdown: 15.0,
-    url: 'https://img1.theiconic.com.au/9lwqQjGpVv00CXZj4NCuD47aOSU=/634x811/filters:quality(95):fill(ffffff)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fstaple-superior-6930-3669011-1.jpg',
-  },
-  {
-    id: 14,
     name: 'HAPPY SOCKS',
     tag: 'The Stripe',
     price: 19.95,
     markdown: null,
     url: 'https://img1.theiconic.com.au/ZPSpcxNc6T1a7rWIesxutvKc6JM=/634x811/filters:quality(95):fill(ffffff)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fhappy-socks-7378-268612-1.jpg',
+  },
+  {
+    id: 14,
+    name: 'STAPLE SUPERIOR',
+    tag: 'Staple Organic Vintage Muscle',
+    price: 24.99,
+    markdown: 15.0,
+    url: 'https://img1.theiconic.com.au/9lwqQjGpVv00CXZj4NCuD47aOSU=/634x811/filters:quality(95):fill(ffffff)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fstaple-superior-6930-3669011-1.jpg',
   },
   {
     id: 15,

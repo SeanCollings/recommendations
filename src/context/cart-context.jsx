@@ -5,11 +5,12 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { PRODUCTS } from '../data/products';
+import { getDisplayRecommendations, getTotalPrice } from '../utils';
 
 export const initialState = {
   cartItems: [],
   recommendations: [],
+  displayRecommendations: [],
   totalPrice: 0,
   addToCart: () => null,
   removeFromCart: () => null,
@@ -17,24 +18,15 @@ export const initialState = {
 
 const CartContext = createContext(initialState);
 
-export const CartContextProvider = ({ children }) => {
-  const intialCartItems = PRODUCTS[0];
-  const initialRecommendedItems = PRODUCTS.slice(1);
-
-  const [totalPrice, setTotalPrice] = useState(
-    intialCartItems.markdown || intialCartItems.price
+export const CartContextProvider = ({ children, ...initialState }) => {
+  const [totalPrice, setTotalPrice] = useState(initialState.price || 0);
+  const [cartItems, setCartItems] = useState(initialState.cart || []);
+  const [displayRecommendations, setDisplayRecommendations] = useState(
+    initialState.displayRecommended || []
   );
-  const [cartItems, setCartItems] = useState([intialCartItems]);
   const [recommendationItems, setRecommendationItems] = useState(
-    initialRecommendedItems
+    initialState.recommended || []
   );
-
-  const getTotalPrice = useCallback((items) => {
-    return items.reduce((acc, current) => {
-      acc += +current.markdown || +current.price;
-      return +acc.toFixed(2);
-    }, 0);
-  }, []);
 
   const addToCart = useCallback(
     (id) => {
@@ -46,12 +38,16 @@ export const CartContextProvider = ({ children }) => {
         (item) => item.id !== id
       );
       updatedCartItems.push(addedItem);
+      const total = getTotalPrice(updatedCartItems);
 
+      const display = getDisplayRecommendations(updatedRecommendations, total);
+
+      setDisplayRecommendations(display);
       setCartItems(updatedCartItems);
       setRecommendationItems(updatedRecommendations);
-      setTotalPrice(getTotalPrice(updatedCartItems));
+      setTotalPrice(total);
     },
-    [cartItems, recommendationItems, getTotalPrice]
+    [cartItems, recommendationItems]
   );
 
   const removeFromCart = useCallback(
@@ -63,22 +59,34 @@ export const CartContextProvider = ({ children }) => {
       updatedRecommendations.push(removedItem);
       updatedRecommendations.sort((a, b) => (a.id > b.id ? 1 : -1));
 
+      const total = getTotalPrice(updatedCartItems);
+      const display = getDisplayRecommendations(updatedRecommendations, total);
+
+      setDisplayRecommendations(display);
       setCartItems(updatedCartItems);
       setRecommendationItems(updatedRecommendations);
-      setTotalPrice(getTotalPrice(updatedCartItems));
+      setTotalPrice(total);
     },
-    [cartItems, recommendationItems, getTotalPrice]
+    [cartItems, recommendationItems]
   );
 
   const context = useMemo(
     () => ({
       cartItems,
       recommendationItems,
+      displayRecommendations,
       totalPrice,
       addToCart,
       removeFromCart,
     }),
-    [cartItems, recommendationItems, totalPrice, addToCart, removeFromCart]
+    [
+      cartItems,
+      recommendationItems,
+      displayRecommendations,
+      totalPrice,
+      addToCart,
+      removeFromCart,
+    ]
   );
 
   return (

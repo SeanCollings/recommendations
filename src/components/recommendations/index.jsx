@@ -121,13 +121,13 @@ const RecommendedItem = ({ item }) => {
 };
 
 const Recommendations = () => {
-  const { recommendationItems } = useCartContext();
+  const { displayRecommendations } = useCartContext();
 
   return (
     <SContainer>
       <SHeader>Recommendations</SHeader>
       <SInnerContainer>
-        {recommendationItems?.map((item, index) => {
+        {displayRecommendations?.map((item, index) => {
           if (index > 4) {
             return null;
           }

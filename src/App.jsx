@@ -7,6 +7,8 @@ import PayBy from './components/pay-by';
 import Recommendations from './components/recommendations';
 import Summary from './components/summary';
 import { CartContextProvider } from './context/cart-context';
+import { PRODUCTS } from './data/products';
+import { getDisplayRecommendations } from './utils';
 
 const SAppContainer = styled.div`
   position: relative;
@@ -39,12 +41,29 @@ const SDivider = styled.div`
   border-bottom: solid 1px whitesmoke;
 `;
 
+const getIntialState = () => {
+  const intialCartItems = PRODUCTS[0];
+  const initialTotalPrice = intialCartItems.markdown || intialCartItems.price;
+  const initialRecommendedItems = PRODUCTS.slice(1);
+  const initialDisplayRecommendations = getDisplayRecommendations(
+    initialRecommendedItems,
+    initialTotalPrice
+  );
+
+  return {
+    cart: [intialCartItems],
+    price: initialTotalPrice,
+    recommended: initialRecommendedItems,
+    displayRecommended: initialDisplayRecommendations,
+  };
+};
+
 function App() {
   return (
     <SAppContainer>
       <Header />
       <SBodyContainer>
-        <CartContextProvider>
+        <CartContextProvider {...getIntialState()}>
           <CheckoutHeader />
           <SDivider />
           <SInnerBodyContainer>

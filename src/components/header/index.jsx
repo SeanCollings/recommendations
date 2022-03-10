@@ -36,6 +36,8 @@ const SHeaderContents = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  max-width: 1280px;
+  margin: auto;
 `;
 
 const Header = () => {

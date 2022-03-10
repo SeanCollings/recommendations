@@ -49,9 +49,9 @@ const DeliverTo = () => {
   return (
     <SContainer>
       <SHeader>Deliver to</SHeader>
-      <Input title="Name" value={'John Doe'} />
+      <Input title="Name" value={'Michael Scott'} />
       <Input title="Delivery Addresss" value={'123 Main Street Sydney'} />
-      <Input title="Mobile Number" value={'0401234567'} />
+      <Input title="Mobile Number" value={'0401 234 567'} />
     </SContainer>
   );
 };

@@ -94,9 +94,13 @@ const Recommendations = () => {
     <SContainer>
       <SHeader>Recommendations</SHeader>
       <SInnerContainer>
-        {recommendationItems?.map((item) => (
-          <RecommendedItem key={item.id} item={item} />
-        ))}
+        {recommendationItems?.map((item, index) => {
+          if (index > 4) {
+            return null;
+          }
+
+          return <RecommendedItem key={item.id} item={item} />;
+        })}
       </SInnerContainer>
     </SContainer>
   );

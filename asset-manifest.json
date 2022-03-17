@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/recommendations/static/js/main.ef8bf709.js",
+    "index.html": "/recommendations/index.html",
+    "main.ef8bf709.js.map": "/recommendations/static/js/main.ef8bf709.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ef8bf709.js"
+  ]
+}

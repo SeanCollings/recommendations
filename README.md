@@ -2,7 +2,7 @@
 
 ## Visit the site via github pages
 
-https://github.com/facebook/create-react-app
+http://SeanCollings.github.io/recommendations
 
 ## About
 

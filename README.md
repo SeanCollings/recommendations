@@ -4,6 +4,8 @@
 
 http://SeanCollings.github.io/recommendations
 
+![image](https://user-images.githubusercontent.com/33746197/158947139-7df5995b-15e1-47cc-bb96-3a7b00784f76.png)
+
 ## About
 
 This was a quick mock-up application written for `The Iconic Hackathon March 2022` that displays recommendations to a user on the check-out page. The premise is that a user may not see the campaign savings available to them and now they have the opportunity to add items to their cart which may allow them to get more items at a very discounted price.
